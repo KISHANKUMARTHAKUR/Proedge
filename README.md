@@ -47,3 +47,41 @@ Expected solution:
     "react-dom": "^16.11.0"
   }
 }
+
+
+ = {
+      items: [],
+      isLoaded: false,
+    };
+  }
+
+  componentDidMount() {
+    fetch('http://proedge.me/test.php?rollnumber=123')
+      .then(res => res.json())
+      .then(result => {
+        this.setState({
+          isLoaded: true,
+          items: result
+        });
+      });
+  }
+
+  render() {
+    const { items } = this.state;
+    if (!isLoaded) {
+      return <div>Loading ... </div>;
+    } else {
+      return (
+        <ul>
+          {items.map(item => (
+            <li key={item.id}>
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+            </li>
+          ))}
+        </ul>
+      );
+    }
+  }
+}
+Fetching Data - Ha
